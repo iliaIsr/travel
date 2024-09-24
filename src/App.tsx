@@ -26,7 +26,27 @@ export type FilterValueType = 'all' | 'completed' | 'active'
 
 function App() {
 
+    let todolistId1 = v1()
+    let todolistId2 = v1()
 
+    let [todolists, setTodolist] = useState<TodolistType[]>([
+        {id: todolistId1, title: 'What to lern', filter: 'active'},
+        {id: todolistId2, title: 'What to bye', filter: 'completed'}
+    ])
+
+    let [taskObj, setTasks] = useState<TasksObjType>({
+        [todolistId1]: [
+            {id: v1(), title: "OPERA", isDone: true},
+            {id: v1(), title: "JS", isDone: true},
+            {id: v1(), title: "CSS", isDone: false},
+            {id: v1(), title: "1C", isDone: false},
+        ],
+        [todolistId2]: [
+            {id: v1(), title: "TEATRO", isDone: true},
+            {id: v1(), title: "MIX", isDone: true},
+
+        ]
+    })
     function removeTask(todolistId: string, id: string) {
         taskObj[todolistId] = taskObj[todolistId].filter(t => t.id !== id);
         setTasks({...taskObj});
@@ -91,27 +111,7 @@ function App() {
         setTodolist([...todolists])
     }
 
-    let todolistId1 = v1()
-    let todolistId2 = v1()
 
-    let [todolists, setTodolist] = useState<TodolistType[]>([
-        {id: todolistId1, title: 'What to lern', filter: 'active'},
-        {id: todolistId2, title: 'What to bye', filter: 'completed'}
-    ])
-
-    let [taskObj, setTasks] = useState<TasksObjType>({
-        [todolistId1]: [
-            {id: v1(), title: "OPERA", isDone: true},
-            {id: v1(), title: "JS", isDone: true},
-            {id: v1(), title: "CSS", isDone: false},
-            {id: v1(), title: "1C", isDone: false},
-        ],
-        [todolistId2]: [
-            {id: v1(), title: "TEATRO", isDone: true},
-            {id: v1(), title: "MIX", isDone: true},
-
-        ]
-    })
 
     return (
         <div className="App">
